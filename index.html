@@ -1,0 +1,33 @@
+<!doctype>
+<html>
+<head>
+<script type='text/javascript'>
+	
+web3.eth.defaultAccount = web3.eth.accounts[0];
+	
+function get() {
+	var res = contracts['Voting'].contract.winningProposal();
+	document.getElementById('queryres').innerText = res;
+}
+
+function vote() {
+	var key = document.getElementById('key').value;
+	var res = contracts['Voting'].contract.vote(key);
+}
+
+</script>
+</head>
+<body bgcolor='#E6E6FA'>
+	<h3>Voting Smart Contract</h3>
+<div>
+Vote:
+	<input type='number' id='key'>
+	<button onclick='vote()'>Vote</button>
+</div>
+<div>
+Result:
+	<input value='get' type='button' id='query' onclick='get()' />
+	<div id='queryres'></div>
+</div>
+</body>
+</html>
